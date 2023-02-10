@@ -8,7 +8,8 @@ const ProtectedRoute = ({ children }) => {
 
   console.log("Check user in Private: ", user);
   if (!user) {
-    return <Navigate to="/" />;
+    console.log("Illegal access");
+    return <Navigate to="/welcome" />;
   }
   return children;
 };

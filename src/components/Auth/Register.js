@@ -1,14 +1,12 @@
 import { AddAPhoto } from "@mui/icons-material";
 import { Box, Button, IconButton, Input, Stack, TextField, Typography } from "@mui/material";
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { RecaptchaVerifier } from "firebase/auth";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import { useUserAuth } from "../../context/UseAuthContext";
 import { auth } from "../../firebase";
-// TODO: Prettify error validation displayed to use
 
 const authSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field"),
@@ -19,7 +17,7 @@ const authSchema = Yup.object().shape({
     // .matches(new RegExp("[0-9]{10}"), "Invalid phone number. Must be 10 digits")
     .required("Phone number is a required field"),
   image: Yup.mixed()
-    // .required("You need to provide a profile picture!")
+    .required("You need to provide a profile picture!")
     .test("fileType", "Upload only PNG and JPG images!", (value) => {
       if (value) {
         return value.type === "image/png" || value.type === "image/jpeg";
@@ -38,16 +36,14 @@ const initialValues = {
 const Register = () => {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
-  const [otp, setOtp] = useState(null);
   const [flag, setFlag] = useState(false);
   const navigate = useNavigate();
-  const { setUpRecaptcha } = useUserAuth();
   const handleSubmit = async (values, { setSubmitting }) => {
     console.log("Registering", values);
     try {
       const recaptchaVerifier = new RecaptchaVerifier("recaptcha-container", {}, auth);
       await recaptchaVerifier.render();
-      const response = await signInWithPhoneNumber(auth, values.phone, recaptchaVerifier);
+      // const response = await signInWithPhoneNumber(auth, values.phone, recaptchaVerifier);
       setResult(response);
       setFlag(true);
       setSubmitting(false);
@@ -58,7 +54,7 @@ const Register = () => {
   const verifyOtp = async (values) => {
     console.log(values);
     try {
-      const res = await result.confirm(values.otp);
+      // const res = await result.confirm(values.otp);
       navigate("/home");
     } catch (err) {
       setError(err.message);
@@ -333,22 +329,23 @@ const Register = () => {
           }}>
           Already have an account?
         </Typography>
-        <Button
-          variant={"filled"}
-          onClick={() => navigate("/login")}
-          sx={{
-            color: "white",
-            backgroundColor: "black",
-            borderRadius: "30px",
-          }}>
-          <Typography
+        <Link to={"/welcome/login"}>
+          <Button
+            variant={"filled"}
             sx={{
-              fontWeight: 600,
-              textTransform: "none",
+              color: "white",
+              backgroundColor: "black",
+              borderRadius: "30px",
             }}>
-            → Log In
-          </Typography>
-        </Button>
+            <Typography
+              sx={{
+                fontWeight: 600,
+                textTransform: "none",
+              }}>
+              → Log In
+            </Typography>
+          </Button>
+        </Link>
       </Stack>
     </Stack>
   );

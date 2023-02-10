@@ -12,10 +12,6 @@ export default function RolePage() {
   const onOptionChange = (e) => {
     setUser(e.target.value);
   };
-  const routeChange = () => {
-    console.log("Called");
-    navigate("/intro");
-  };
 
   return (
     <Grid
@@ -136,7 +132,7 @@ export default function RolePage() {
           Next
         </Button> */}
         <Button variant="contained">
-          <Link style={{ color: "white" }} to="/intro" state={{ data: { user } }}>
+          <Link style={{ color: "white" }} to="/welcome/intro" state={{ data: { user } }}>
             Next
           </Link>
         </Button>
