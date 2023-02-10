@@ -44,18 +44,8 @@
     "eslint-plugin-react": "^7.32.1",
     "eslint-plugin-simple-import-sort": "^9.0.0",
     "prettier": "^2.8.3",
-    "react-scripts": "5.0.1"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.11.0",
-    "@mui/material": "^5.11.8",
-    "@react-google-maps/api": "^2.18.1",
-    "firebase": "^9.17.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.7.0"
+    "react-scripts": "5.0.1",
+    "@react-google-maps/api": "^2.18.1"
   },
   "browserslist": {
     "production": [
