@@ -1,7 +1,7 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 // TODO: Prettify error validation displayed to use
 
@@ -139,22 +139,23 @@ const Login = () => {
           }}>
           Don&apos;t have an account?
         </Typography>
-        <Button
-          variant={"filled"}
-          onClick={() => navigate("/register")}
-          sx={{
-            color: "white",
-            backgroundColor: "black",
-            borderRadius: "30px",
-          }}>
-          <Typography
+        <Link to={"/welcome/register"}>
+          <Button
+            variant={"filled"}
             sx={{
-              fontWeight: 600,
-              textTransform: "none",
+              color: "white",
+              backgroundColor: "black",
+              borderRadius: "30px",
             }}>
-            → Register
-          </Typography>
-        </Button>
+            <Typography
+              sx={{
+                fontWeight: 600,
+                textTransform: "none",
+              }}>
+              → Register
+            </Typography>
+          </Button>
+        </Link>
       </Stack>
     </Stack>
   );
