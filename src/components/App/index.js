@@ -1,11 +1,13 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
+import { UserAuthContextProvider } from "../../context/UseAuthContext";
 import HomePage from "../../pages/Home";
 import { lightTheme } from "../../themes/lightTheme";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
+import ProtectedRoute from "../ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,20 @@ function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
-      <RouterProvider router={router} />
+      <UserAuthContextProvider>
+        <Routes>
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path={"/"} element={<Login />} />
+          <Route path={"/register"} element={<Register />} />
+        </Routes>
+      </UserAuthContextProvider>
     </ThemeProvider>
   );
 }
