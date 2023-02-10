@@ -16,6 +16,13 @@ module.exports = {
     Promise: true,
   },
   rules: {
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
+    "comma-dangle": ["off"],
     "no-shadow": "off",
     "no-catch-shadow": "off",
     "react/prop-types": "off",
