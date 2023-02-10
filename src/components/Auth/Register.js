@@ -2,6 +2,7 @@ import { AddAPhoto } from "@mui/icons-material";
 import { Button, IconButton, Input, Stack, TextField, Typography } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 // TODO: Prettify error validation displayed to use
 
@@ -38,6 +39,7 @@ const handleSubmit = (values, { setSubmitting }) => {
 };
 const Register = () => {
   const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
   return (
     <Stack
@@ -231,6 +233,7 @@ const Register = () => {
         </Typography>
         <Button
           variant={"filled"}
+          onClick={() => navigate("/login")}
           sx={{
             color: "white",
             backgroundColor: "black",
