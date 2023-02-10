@@ -17,14 +17,14 @@ const initialValues = {
   password: "",
 };
 
-const handleSubmit = (values, { setSubmitting }) => {
-  setTimeout(() => {
-    console.log("Logging in", values);
-    setSubmitting(false);
-  }, 500);
-};
 const Login = () => {
   const navigate = useNavigate();
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    console.log("Submitting values: ", values);
+    setSubmitting(false);
+    navigate("/");
+  };
 
   return (
     <Stack

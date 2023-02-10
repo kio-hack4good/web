@@ -79,20 +79,22 @@ export default function Intro(user) {
             sx={{
               marginBottom: "10vh",
             }}>
-            <Button
-              variant={"outlined"}
-              sx={{
-                backgroundColor: "#FFFFFF",
-                paddingLeft: 0,
-                paddingRight: 0,
-                width: "90%",
-                borderRadius: "10px",
-                alignSelf: "center",
-              }}>
-              <Typography variant="h4" sx={{ fontWeight: "bold", textTransform: "none" }}>
-                Get Started
-              </Typography>
-            </Button>
+            <Link to={"/welcome/register"}>
+              <Button
+                variant={"outlined"}
+                sx={{
+                  backgroundColor: "#FFFFFF",
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  width: "90%",
+                  borderRadius: "10px",
+                  alignSelf: "center",
+                }}>
+                <Typography variant="h4" sx={{ fontWeight: "bold", textTransform: "none" }}>
+                  Get Started
+                </Typography>
+              </Button>
+            </Link>
             <Typography
               variant={"h5"}
               sx={{
