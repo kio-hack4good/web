@@ -3,12 +3,11 @@ import Button from "@mui/material/Button";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import logo from "/Users/jamie/Documents/Y1S2/kio/web/src/img/logo.svg";
+import logo from "../assets/logo.svg";
 
 export default function HomePage() {
   let navigate = useNavigate();
   const routeChange = () => {
-    console.log("Called");
     navigate("/role");
   };
 
@@ -19,7 +18,6 @@ export default function HomePage() {
       direction="column"
       alignItems="center"
       justifyContent="start"
-      // eslint-disable-next-line prettier/prettier
       paddingTop="20%">
       <Grid item xs={12}>
         <img src={logo} alt="logo"></img>
@@ -30,9 +28,7 @@ export default function HomePage() {
         </Button>
       </Grid>
       <Grid item xs={12}>
-        <Button variant="contained" onClick={() => Navigate("/intro")}>
-          Login
-        </Button>
+        <Button variant="contained">Login</Button>
       </Grid>
     </Grid>
   );

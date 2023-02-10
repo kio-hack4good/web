@@ -1,24 +1,21 @@
-/* eslint-disable prettier/prettier */
-import { Grid } from "@mui/material";
-import { Box, Button, Radio, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { React, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import befriender from "/Users/jamie/Documents/Y1S2/kio/web/src/img/befriender.svg";
-import explorer from "/Users/jamie/Documents/Y1S2/kio/web/src/img/explorer.svg";
-import guardian from "/Users/jamie/Documents/Y1S2/kio/web/src/img/guardian.svg";
+import befriender from "../assets/befriender.svg";
+import explorer from "../assets/explorer.svg";
+import guardian from "../assets/guardian.svg";
 
 export default function RolePage() {
-  const [user, setUser] = useState("Explorer")
+  const [user, setUser] = useState("Explorer");
   let navigate = useNavigate();
-  const onOptionChange = e => {
-    setUser(e.target.value)
-  }
+  const onOptionChange = (e) => {
+    setUser(e.target.value);
+  };
   const routeChange = () => {
     console.log("Called");
     navigate("/intro");
   };
-
 
   return (
     <Grid
@@ -62,7 +59,13 @@ export default function RolePage() {
           <Grid>
             <Box padding={6} sx={{ textAlign: "left" }}>
               <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-                <input type="radio" name = "Explorer" value = "Explorer" checked={user === "Explorer"} onChange={onOptionChange}/>
+                <input
+                  type="radio"
+                  name="Explorer"
+                  value="Explorer"
+                  checked={user === "Explorer"}
+                  onChange={onOptionChange}
+                />
                 Explorer <img src={explorer} alt="logo"></img>
               </Typography>
               <p>
@@ -85,7 +88,13 @@ export default function RolePage() {
           <Grid>
             <Box padding={6} sx={{ textAlign: "left" }}>
               <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-                <input type="radio" name = "Befriender" value = "Befriender" checked={user === "Befriender"} onChange={onOptionChange}/>
+                <input
+                  type="radio"
+                  name="Befriender"
+                  value="Befriender"
+                  checked={user === "Befriender"}
+                  onChange={onOptionChange}
+                />
                 Befriender <img src={befriender} alt="logo"></img>
               </Typography>
               <p>
@@ -108,7 +117,13 @@ export default function RolePage() {
           <Grid>
             <Box padding={6} sx={{ textAlign: "left" }}>
               <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-                <input type="radio" name = "Guardian" value = "Guardian" checked={user === "Guardian"} onChange={onOptionChange}/>
+                <input
+                  type="radio"
+                  name="Guardian"
+                  value="Guardian"
+                  checked={user === "Guardian"}
+                  onChange={onOptionChange}
+                />
                 Guardian <img src={guardian} alt="logo"></img>
               </Typography>
               <p>Fellow guardian angels who descended down to help Explorers on their journey.</p>
@@ -120,7 +135,11 @@ export default function RolePage() {
         {/* <Button variant="contained" onClick={routeChange}>
           Next
         </Button> */}
-        <Button variant="contained"><Link style={{color: 'white'}} to="/intro" state={{ data: {user}}}>Next</Link></Button>
+        <Button variant="contained">
+          <Link style={{ color: "white" }} to="/intro" state={{ data: { user } }}>
+            Next
+          </Link>
+        </Button>
       </Grid>
     </Grid>
   );
