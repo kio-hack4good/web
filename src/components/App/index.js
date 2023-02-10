@@ -6,6 +6,10 @@ import { UserAuthContextProvider } from "../../context/UseAuthContext";
 import Intro from "../../pages/Intro";
 import Landing from "../../pages/Landing";
 import MapView from "../../pages/MapView";
+import BefrienderProfile from "../../pages/onboarding/BefrienderProfile";
+import BefrienderStatus from "../../pages/onboarding/BefrienderStatus";
+import ExplorerProfile from "../../pages/onboarding/ExplorerProfile";
+import ExplorerStatus from "../../pages/onboarding/ExplorerStatus";
 import RolePage from "../../pages/Role";
 import { lightTheme } from "../../themes/lightTheme";
 import Login from "../Auth/Login";
@@ -32,6 +36,14 @@ function App() {
             <Route path={"register"} element={<Register />} />
             <Route path={"role"} element={<RolePage />} />
             <Route path={"intro"} element={<Intro />} />
+          </Route>
+          <Route path={"/onboarding"}>
+            <Route path={"befriender-status"} element={<BefrienderStatus />}>
+              <Route path={"get-to-know-you"} element={<BefrienderProfile />} />
+            </Route>
+            <Route path={"explorer-status"} element={<ExplorerStatus />}>
+              <Route path={"get-to-know-you"} element={<ExplorerProfile />} />
+            </Route>
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
