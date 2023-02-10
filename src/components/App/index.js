@@ -22,28 +22,23 @@ function App() {
       <CssBaseline />
       <UserAuthContextProvider>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <MapView />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route index element={<MapView />} />
+            <Route path={"/onboarding"}>
+              <Route path={"befriender-status"} element={<BefrienderStatus />}>
+                <Route path={"get-to-know-you"} element={<BefrienderProfile />} />
+              </Route>
+              <Route path={"explorer-status"} element={<ExplorerStatus />}>
+                <Route path={"get-to-know-you"} element={<ExplorerProfile />} />
+              </Route>
+            </Route>
+          </Route>
           <Route path={"/welcome"}>
             <Route index element={<Landing />} />
             <Route path={"login"} element={<Login />} />
             <Route path={"register"} element={<Register />} />
             <Route path={"role"} element={<RolePage />} />
             <Route path={"intro"} element={<Intro />} />
-          </Route>
-          <Route path={"/onboarding"}>
-            <Route path={"befriender-status"} element={<BefrienderStatus />}>
-              <Route path={"get-to-know-you"} element={<BefrienderProfile />} />
-            </Route>
-            <Route path={"explorer-status"} element={<ExplorerStatus />}>
-              <Route path={"get-to-know-you"} element={<ExplorerProfile />} />
-            </Route>
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
