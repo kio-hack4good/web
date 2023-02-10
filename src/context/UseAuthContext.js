@@ -1,9 +1,9 @@
 import {
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
   onAuthStateChanged,
+  RecaptchaVerifier,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  signInWithPhoneNumber,
   signOut,
 } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -27,9 +27,10 @@ export function UserAuthContextProvider({ children }) {
     return signOut(auth);
   }
 
-  function googleSignIn() {
-    const googleAuthProvider = new GoogleAuthProvider();
-    return signInWithPopup(auth, googleAuthProvider);
+  async function setUpRecaptcha(number) {
+    const recaptchaVerifier = new RecaptchaVerifier("recaptcha-container", {}, auth);
+    await recaptchaVerifier.render();
+    return signInWithPhoneNumber(auth, number, recaptchaVerifier);
   }
 
   useEffect(() => {
@@ -45,7 +46,7 @@ export function UserAuthContextProvider({ children }) {
 
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
-    <userAuthContext.Provider value={{ user, logIn, signUp, logOut, googleSignIn }}>
+    <userAuthContext.Provider value={{ user, setUpRecaptcha, logIn, signUp, logOut }}>
       {children}
     </userAuthContext.Provider>
   );

@@ -7,6 +7,7 @@ import HomePage from "../../pages/Home";
 import { lightTheme } from "../../themes/lightTheme";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
+import Verify from "../Auth/Verify";
 import ProtectedRoute from "../ProtectedRoutes";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           />
           <Route path={"/"} element={<Login />} />
           <Route path={"/register"} element={<Register />} />
+          <Route path={"/verify"} element={<Verify />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </UserAuthContextProvider>
