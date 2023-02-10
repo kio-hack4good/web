@@ -2,15 +2,15 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
+import { UserAuthContextProvider } from "../../context/UseAuthContext";
 import HomePage from "../../pages/Home";
+import IntroPage from "../../pages/Intro";
+import RolePage from "../../pages/Role";
 import { lightTheme } from "../../themes/lightTheme";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
-import { UserAuthContextProvider } from "../../context/UseAuthContext";
-import ProtectedRoute from "../ProtectedRoutes";
 import Verify from "../Auth/Verify";
-import RolePage from "../../pages/Role";
-import IntroPage from "../../pages/Intro";
+import ProtectedRoute from "../ProtectedRoutes";
 
 function App() {
   return (
