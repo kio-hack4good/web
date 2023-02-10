@@ -1,7 +1,6 @@
-import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, Box, Paper } from "@mui/material";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-import Image from "mui-image";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 const centre = { lat: 1.3082, lng: 103.7734 };
 
@@ -32,23 +31,35 @@ export default function MapView() {
 
   return isLoaded ? (
     <>
-      <Box width="100%">
-        <GoogleMap
-          mapContainerStyle={{ width: "1500px", height: "800px" }}
-          center={centre}
-          zoom={10}
-          onLoad={onLoad}
-          onUnmount={onUnmount}></GoogleMap>
-        <BottomNavigation
-          showLabels
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
+      <Box
+        sx={{
+          height: "100vh",
+        }}>
+        <Box
+          sx={{
+            display: "flex",
+            height: "100%",
           }}>
-          <BottomNavigationAction label="Profile" variant="h1" />
-          <BottomNavigationAction label="Map" variant="h1" />
-          <BottomNavigationAction label="Resources" variant="h1" />
-        </BottomNavigation>
+          <GoogleMap
+            mapContainerStyle={{ width: "100%", height: "100%" }}
+            center={centre}
+            zoom={10}
+            onLoad={onLoad}
+            onUnmount={onUnmount}
+          />
+        </Box>
+        <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}>
+          <BottomNavigation
+            showLabels
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}>
+            <BottomNavigationAction label="Profile" variant="h1" />
+            <BottomNavigationAction label="Map" variant="h1" />
+            <BottomNavigationAction label="Resources" variant="h1" />
+          </BottomNavigation>
+        </Paper>
       </Box>
     </>
   ) : (
