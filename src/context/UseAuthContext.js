@@ -10,7 +10,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 import { auth } from "../firebase";
 
-const userAuthContext = createContext();
+const userAuthContext = createContext(null);
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
