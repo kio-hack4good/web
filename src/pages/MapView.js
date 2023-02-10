@@ -10,6 +10,7 @@ export default function MapView() {
 
   const [map, setMap] = useState(null);
   const [centre, setCentre] = useState({ lat: 1.3082, lng: 103.7734 });
+  const [value, setValue] = useState(0);
 
   const onLoad = useCallback((map) => {
     const bounds = new google.maps.LatLngBounds();
