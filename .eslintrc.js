@@ -11,7 +11,7 @@ module.exports = {
     },
   },
   extends: ["plugin:react/recommended", "plugin:prettier/recommended"],
-  plugins: ["simple-import-sort"],
+  plugins: ["simple-import-sort", "prettier"],
   globals: {
     Promise: true,
   },
@@ -29,14 +29,7 @@ module.exports = {
     "simple-import-sort/imports": [
       "error",
       {
-        groups: [
-          ["^\\u0000"],
-          ["^@?\\w"],
-          ["^src"],
-          ["^"],
-          ["^\\."],
-          ["^.+\\u0000$"],
-        ],
+        groups: [["^\\u0000"], ["^@?\\w"], ["^src"], ["^"], ["^\\."], ["^.+\\u0000$"]],
       },
     ],
     "simple-import-sort/exports": "error",
