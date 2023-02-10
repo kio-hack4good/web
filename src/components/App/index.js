@@ -1,18 +1,22 @@
-import "./index.css";
-
+import { CssBaseline } from "@mui/material";
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Home from "../../pages/Home";
+import HomePage from "../../pages/Home";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+]);
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </>
   );
 }
 
