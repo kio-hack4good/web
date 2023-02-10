@@ -1,9 +1,13 @@
 import { AddAPhoto } from "@mui/icons-material";
-import { Button, IconButton, Input, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, IconButton, Input, Stack, TextField, Typography } from "@mui/material";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+
+import { useUserAuth } from "../../context/UseAuthContext";
+import { auth } from "../../firebase";
 // TODO: Prettify error validation displayed to use
 
 const authSchema = Yup.object().shape({
@@ -12,10 +16,10 @@ const authSchema = Yup.object().shape({
     .required("Password is a required field")
     .min(8, "Password must be at least 8 characters"),
   phone: Yup.string()
-    .matches(new RegExp("[0-9]{8}"), "Invalid phone number. Must be 8 digits")
+    // .matches(new RegExp("[0-9]{10}"), "Invalid phone number. Must be 10 digits")
     .required("Phone number is a required field"),
   image: Yup.mixed()
-    .required("You need to provide a profile picture!")
+    // .required("You need to provide a profile picture!")
     .test("fileType", "Upload only PNG and JPG images!", (value) => {
       if (value) {
         return value.type === "image/png" || value.type === "image/jpeg";
@@ -31,17 +35,113 @@ const initialValues = {
   image: null,
 };
 
-const handleSubmit = (values, { setSubmitting }) => {
-  setTimeout(() => {
-    console.log("Logging in", values);
-    setSubmitting(false);
-  }, 500);
-};
 const Register = () => {
   const [file, setFile] = useState(null);
+  const [result, setResult] = useState(null);
+  const [otp, setOtp] = useState(null);
+  const [flag, setFlag] = useState(false);
   const navigate = useNavigate();
+  const { setUpRecaptcha } = useUserAuth();
+  const handleSubmit = async (values, { setSubmitting }) => {
+    console.log("Registering", values);
+    try {
+      const recaptchaVerifier = new RecaptchaVerifier("recaptcha-container", {}, auth);
+      await recaptchaVerifier.render();
+      const response = await signInWithPhoneNumber(auth, values.phone, recaptchaVerifier);
+      setResult(response);
+      setFlag(true);
+      setSubmitting(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const verifyOtp = async (values) => {
+    console.log(values);
+    try {
+      const res = await result.confirm(values.otp);
+      navigate("/home");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
-  return (
+  const ValidationScreen = () => (
+    <Box
+      sx={{
+        paddingLeft: "10vw",
+        paddingRight: "10vw",
+        height: "100vh",
+      }}>
+      <Formik
+        onSubmit={verifyOtp}
+        initialValues={{
+          otp: "",
+        }}>
+        <Form>
+          <Stack
+            sx={{
+              alignItems: "center",
+              marginTop: "10vh",
+            }}>
+            <Typography
+              variant={"h1"}
+              sx={{
+                fontWeight: "bold",
+              }}>
+              Verify your device!
+            </Typography>
+            <Typography
+              variant={"h4"}
+              sx={{
+                textAlign: "center",
+                marginBottom: "10vh",
+              }}>
+              Enter the code you received via SMS.
+            </Typography>
+            <Field name="otp">
+              {({
+                field, // { name, value, onChange, onBlur }
+              }) => (
+                <Stack>
+                  <TextField sx={{ height: "10%" }} placeholder="Enter the OTP here" {...field} />
+                  <ErrorMessage name="otp">
+                    {(msg) => (
+                      <Typography
+                        variant={"h5"}
+                        sx={{
+                          color: "warning.main",
+                        }}>
+                        {msg}
+                      </Typography>
+                    )}
+                  </ErrorMessage>
+                </Stack>
+              )}
+            </Field>
+            {/*<Typography*/}
+            {/*  variant={"h4"}*/}
+            {/*  sx={{*/}
+            {/*    marginTop: "3em",*/}
+            {/*  }}>*/}
+            {/*  Didn&apos;t receive the code?*/}
+            {/*</Typography>*/}
+            {/*<Typography*/}
+            {/*  variant={"h4"}*/}
+            {/*  sx={{*/}
+            {/*    fontWeight: "bold",*/}
+            {/*  }}>*/}
+            {/*  Request again*/}
+            {/*</Typography>*/}
+            <Button type={"submit"}>Confirm OTP</Button>
+          </Stack>
+        </Form>
+      </Formik>
+    </Box>
+  );
+
+  return flag ? (
+    <ValidationScreen />
+  ) : (
     <Stack
       sx={{
         paddingLeft: "10vw",
@@ -66,6 +166,8 @@ const Register = () => {
             Begin your journey here.
           </Typography>
         </Stack>
+        <div id={"recaptcha-container"}></div>
+
         <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={authSchema}>
           {({ isSubmitting }) => (
             <Form>
