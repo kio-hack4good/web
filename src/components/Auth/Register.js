@@ -6,9 +6,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import { useUserAuth } from "../../context/UseAuthContext";
 import { auth } from "../../firebase";
-// TODO: Prettify error validation displayed to use
 
 const authSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field"),
@@ -19,7 +17,7 @@ const authSchema = Yup.object().shape({
     // .matches(new RegExp("[0-9]{10}"), "Invalid phone number. Must be 10 digits")
     .required("Phone number is a required field"),
   image: Yup.mixed()
-    // .required("You need to provide a profile picture!")
+    .required("You need to provide a profile picture!")
     .test("fileType", "Upload only PNG and JPG images!", (value) => {
       if (value) {
         return value.type === "image/png" || value.type === "image/jpeg";
@@ -38,10 +36,8 @@ const initialValues = {
 const Register = () => {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
-  const [otp, setOtp] = useState(null);
   const [flag, setFlag] = useState(false);
   const navigate = useNavigate();
-  const { setUpRecaptcha } = useUserAuth();
   const handleSubmit = async (values, { setSubmitting }) => {
     console.log("Registering", values);
     try {
