@@ -22,6 +22,7 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
+    "comma-dangle": ["off"],
     "no-shadow": "off",
     "no-catch-shadow": "off",
     "react/prop-types": "off",
