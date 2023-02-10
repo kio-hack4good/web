@@ -3,9 +3,12 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HomePage from "../../pages/Home";
+import IntroPage from "../../pages/Intro";
+// import RegisterPage from "../../pages/Register";
+import RolePage from "../../pages/Role";
 import { lightTheme } from "../../themes/lightTheme";
-import Login from "../Auth/Login";
-import Register from "../Auth/Register";
+import LoginPage from "../Auth/Login";
+import RegisterPage from "../Auth/Register";
 
 const router = createBrowserRouter([
   {
@@ -13,12 +16,20 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
+    path: "/role",
+    element: <RolePage />,
+  },
+  {
+    path: "/intro",
+    element: <IntroPage />,
+  },
+  {
     path: "/register",
-    element: <Register />,
+    element: <RegisterPage />,
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <LoginPage />,
   },
 ]);
 
