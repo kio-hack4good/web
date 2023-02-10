@@ -16,6 +16,12 @@ module.exports = {
     Promise: true,
   },
   rules: {
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
     "no-shadow": "off",
     "no-catch-shadow": "off",
     "react/prop-types": "off",
