@@ -1,6 +1,6 @@
 import { AddAPhoto } from "@mui/icons-material";
 import { Box, Button, IconButton, Input, Stack, TextField, Typography } from "@mui/material";
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { RecaptchaVerifier } from "firebase/auth";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,7 @@ const Register = () => {
     try {
       const recaptchaVerifier = new RecaptchaVerifier("recaptcha-container", {}, auth);
       await recaptchaVerifier.render();
-      const response = await signInWithPhoneNumber(auth, values.phone, recaptchaVerifier);
+      // const response = await signInWithPhoneNumber(auth, values.phone, recaptchaVerifier);
       setResult(response);
       setFlag(true);
       setSubmitting(false);
@@ -54,7 +54,7 @@ const Register = () => {
   const verifyOtp = async (values) => {
     console.log(values);
     try {
-      const res = await result.confirm(values.otp);
+      // const res = await result.confirm(values.otp);
       navigate("/home");
     } catch (err) {
       setError(err.message);
