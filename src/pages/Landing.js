@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/logo.svg";
 
-export default function HomePage() {
+export default function Landing() {
   let navigate = useNavigate();
 
   return (
@@ -20,14 +20,12 @@ export default function HomePage() {
         <img src={logo} alt="logo"></img>
       </Grid>
       <Grid item xs={12}>
-        <Link to={"/role"}>
-          <Button variant="contained" onClick={routeChange}>
-            Get Started
-          </Button>
+        <Link to={"/welcome/role"}>
+          <Button variant="contained">Get Started</Button>
         </Link>
       </Grid>
       <Grid item xs={12}>
-        <Link to={"/"}>
+        <Link to={"/welcome/login"}>
           <Button variant="contained">Login</Button>
         </Link>
       </Grid>

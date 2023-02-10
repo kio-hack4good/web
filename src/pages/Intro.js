@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../assets/logoSmall.svg";
 
-export default function HomePage(user) {
+export default function Intro(user) {
   let navigate = useNavigate();
   const routeChange = () => {
     navigate("/register");

@@ -3,7 +3,7 @@ import { Box, Button, IconButton, Input, Stack, TextField, Typography } from "@m
 import { RecaptchaVerifier } from "firebase/auth";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import { auth } from "../../firebase";
@@ -329,22 +329,23 @@ const Register = () => {
           }}>
           Already have an account?
         </Typography>
-        <Button
-          variant={"filled"}
-          onClick={() => navigate("/login")}
-          sx={{
-            color: "white",
-            backgroundColor: "black",
-            borderRadius: "30px",
-          }}>
-          <Typography
+        <Link to={"/welcome/login"}>
+          <Button
+            variant={"filled"}
             sx={{
-              fontWeight: 600,
-              textTransform: "none",
+              color: "white",
+              backgroundColor: "black",
+              borderRadius: "30px",
             }}>
-            → Log In
-          </Typography>
-        </Button>
+            <Typography
+              sx={{
+                fontWeight: 600,
+                textTransform: "none",
+              }}>
+              → Log In
+            </Typography>
+          </Button>
+        </Link>
       </Stack>
     </Stack>
   );
