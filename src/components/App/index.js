@@ -25,12 +25,10 @@ function App() {
           <Route path="/" element={<ProtectedRoute />}>
             <Route index element={<MapView />} />
             <Route path={"/onboarding"}>
-              <Route path={"befriender-status"} element={<BefrienderStatus />}>
-                <Route path={"get-to-know-you"} element={<BefrienderProfile />} />
-              </Route>
-              <Route path={"explorer-status"} element={<ExplorerStatus />}>
-                <Route path={"get-to-know-you"} element={<ExplorerProfile />} />
-              </Route>
+              <Route path={"befriender-status"} element={<BefrienderStatus />} />
+              <Route path={"befriender-profile"} element={<BefrienderProfile />} />
+              <Route path={"explorer-status"} element={<ExplorerStatus />} />
+              <Route path={"explorer-profile"} element={<ExplorerProfile />} />
             </Route>
           </Route>
           <Route path={"/welcome"}>
