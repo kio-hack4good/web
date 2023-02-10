@@ -36,4 +36,5 @@ export const themeOptions = {
     },
   },
 };
+
 export const lightTheme = createTheme(themeOptions);
