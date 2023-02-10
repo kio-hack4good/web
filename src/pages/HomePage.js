@@ -1,15 +1,12 @@
 import { Grid } from "@mui/material";
 import Button from "@mui/material/Button";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/logo.svg";
 
 export default function HomePage() {
   let navigate = useNavigate();
-  const routeChange = () => {
-    navigate("/role");
-  };
 
   return (
     <Grid
@@ -23,12 +20,16 @@ export default function HomePage() {
         <img src={logo} alt="logo"></img>
       </Grid>
       <Grid item xs={12}>
-        <Button variant="contained" onClick={routeChange}>
-          Get Started
-        </Button>
+        <Link to={"/role"}>
+          <Button variant="contained" onClick={routeChange}>
+            Get Started
+          </Button>
+        </Link>
       </Grid>
       <Grid item xs={12}>
-        <Button variant="contained">Login</Button>
+        <Link to={"/"}>
+          <Button variant="contained">Login</Button>
+        </Link>
       </Grid>
     </Grid>
   );
