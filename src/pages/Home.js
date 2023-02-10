@@ -1,9 +1,12 @@
 import React from "react";
 
+import MapView from "./MapView";
+
 export default function HomePage() {
   return (
-    <div>
-      <h1>This is the home page</h1>
-    </div>
+    // <div>
+    //   <h1>This is the home page</h1>
+    // </div>
+    <MapView></MapView>
   );
 }
