@@ -5,7 +5,7 @@
 Our team aims to tackle the issues of social inclusion and social stigma towards PwDs. As noted by NCSS’s report on PwDs:
 
 > In holistically improving the areas outlined in the WHOQOL-BREF, addressing social inclusion when designing initiatives can achieve the greatest effect. 
-The aspects to focus on include eliminating barriers to understanding, communicating and getting along with others, and increasing social participation
+The aspects to focus on include eliminating barriers to understanding, communicating and getting along with others, and increasing social participation.
 
 As such, our team designed Kio.
 
@@ -46,7 +46,7 @@ Kio is built by a team of four students from the National University of Singapor
 - Seah Shau Chung Nicholas (Year 2 Computer Science) 
 - Mai Ting Kai (Year 2 Computer Science) 
 - Toh Hui Lin Jamie (Year 1 Computer Science) 
-- Koh Chan Hong (Year 1 Computer Science). 
+- Koh Chan Hong (Year 1 Computer Science)
 
 <br>
 
@@ -161,7 +161,9 @@ Although our team is passionate about empowering PwDs, we understand the limitat
 Notably, we plan on collaborating closely with EnableSG and leverage on their expertise to develop Kio into a more holistic solution.
 
 The Mobile Application will likely receive further changes in this time, building on the feedback received.
-Building Partnerships
+
+### Building Partnerships
+
 As Kio plans on partnering with existing organizations and enhancing their existing initiatives, further consultations and studies will be conducted with them to learn how Kio may best complement them. 
 
 ### Pilot Test in Neighbourhood/Community Center
