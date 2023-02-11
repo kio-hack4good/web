@@ -5,7 +5,7 @@ import React, { useCallback, useState } from "react";
 export default function MapViewPage() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyB5TGwWCc-RM-xKoWGegoGFiNLoidedWrM",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
   const [map, setMap] = useState(null);
