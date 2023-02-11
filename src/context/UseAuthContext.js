@@ -14,6 +14,7 @@ const userAuthContext = createContext(null);
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
+  const [userType, setUserType] = useState("Explorer");
 
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -46,7 +47,8 @@ export function UserAuthContextProvider({ children }) {
 
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
-    <userAuthContext.Provider value={{ user, setUpRecaptcha, logIn, signUp, logOut }}>
+    <userAuthContext.Provider
+      value={{ user, setUpRecaptcha, logIn, signUp, logOut, userType, setUserType }}>
       {children}
     </userAuthContext.Provider>
   );

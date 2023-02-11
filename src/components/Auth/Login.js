@@ -3,6 +3,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+
+import { useUserAuth } from "../../context/UseAuthContext";
 // TODO: Prettify error validation displayed to use
 
 const authSchema = Yup.object().shape({
@@ -19,11 +21,17 @@ const initialValues = {
 
 const Login = () => {
   const navigate = useNavigate();
+  const { userType } = useUserAuth();
+  console.log(userType);
 
   const handleSubmit = (values, { setSubmitting }) => {
     console.log("Submitting values: ", values);
     setSubmitting(false);
-    navigate("/");
+    if (userType == "Explorer") {
+      navigate("/onboarding/explorer-status");
+    } else {
+      navigate("/onboarding/befriender-status");
+    }
   };
 
   return (

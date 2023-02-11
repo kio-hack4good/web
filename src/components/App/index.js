@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ProtectedRoute />}>
             <Route index element={<MapView />} />
-            <Route path={"/onboarding"}>
+            <Route path={"onboarding"}>
               <Route path={"befriender-status"} element={<BefrienderStatus />} />
               <Route path={"befriender-profile"} element={<BefrienderProfile />} />
               <Route path={"explorer-status"} element={<ExplorerStatus />} />

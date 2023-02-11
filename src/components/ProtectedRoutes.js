@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router";
+import { Navigate, Outlet } from "react-router-dom";
 
 import { useUserAuth } from "../context/UseAuthContext";
 
@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children }) => {
     console.log("Illegal access");
     return <Navigate to="/welcome" />;
   }
-  return children;
+  return <Outlet>{children}</Outlet>;
 };
 
 export default ProtectedRoute;
