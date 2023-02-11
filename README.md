@@ -198,3 +198,10 @@ Kio enhances existing initiatives: Kio does not attempt to reinvent the wheel. R
 ### Limitations
 Inexperience of team: We understand that our collective experience with PwDs are limited. As such, we hope to leverage on the expertise that SGEnable may offer to help develop Kio.
 
+## References
+
+- [NCSS Understanding the QOL of Adults with Disabilities](https://www.ncss.gov.sg/press-room/publications/UnderstandingtheQualityofLifeofAdultswithDisabilities)
+- [CityOfGood's Report of Issues faced by People with Disabilities in Singapore](https://cityofgood.sg/resources/report-on-issues-faced-by-people-with-disabilities-in-singapore/)
+- [Today's When Persons Disabilities Singapore Are Left Out Bodies Remaining](https://www.todayonline.com/commentary/when-persons-disabilities-singapore-are-left-out-bodies-representing-them)
+- [SmartBFA Mapping Accessibility](https://better.sg/blog/2021/05/24/interview-mercurics-team-smartbfa-mapping-accessibility/)
+- [SGEnable's Disability in Singapore](https://www.sgenable.sg/about-us/our-impact/disability-in-singapore)
