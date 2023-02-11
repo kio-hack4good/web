@@ -10,6 +10,7 @@ import BefrienderProfile from "../../pages/onboarding/BefrienderProfile";
 import BefrienderStatus from "../../pages/onboarding/BefrienderStatus";
 import ExplorerProfile from "../../pages/onboarding/ExplorerProfile";
 import ExplorerStatus from "../../pages/onboarding/ExplorerStatus";
+import Activities from "../../pages/onboarding/SelectActivities";
 import RolePage from "../../pages/Role";
 import { lightTheme } from "../../themes/lightTheme";
 import Login from "../Auth/Login";
@@ -23,7 +24,6 @@ function App() {
       <UserAuthContextProvider>
         <Routes>
           <Route path="/" element={<ProtectedRoute />}>
-            <Route index element={<MapView />} />
             <Route path={"/onboarding"}>
               <Route path={"befriender-status"} element={<BefrienderStatus />} />
               <Route path={"befriender-profile"} element={<BefrienderProfile />} />
@@ -37,6 +37,10 @@ function App() {
             <Route path={"register"} element={<Register />} />
             <Route path={"role"} element={<RolePage />} />
             <Route path={"intro"} element={<Intro />} />
+            <Route path={"activities"} element={<Activities />} />
+          </Route>
+          <Route path={"/home"}>
+            <Route index element={<MapView />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
