@@ -3,15 +3,16 @@ import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { UserAuthContextProvider } from "../../contexts/UserAuth";
-import IntroPage from "../../pages/Intro";
-import LandingPage from "../../pages/Landing";
-import LoginPage from "../../pages/Login";
-import MapViewPage from "../../pages/MapView";
-import BefrienderProfilePage from "../../pages/onboarding/BefrienderProfile";
-import BefrienderStatusPage from "../../pages/onboarding/BefrienderStatus";
-import ExplorerProfilePage from "../../pages/onboarding/ExplorerProfile";
-import ExplorerStatusPage from "../../pages/onboarding/ExplorerStatus";
-import RegisterPage from "../../pages/Register";
+import Intro from "../../pages/Intro";
+import Landing from "../../pages/Landing";
+import Login from "../../pages/Login";
+import MapView from "../../pages/MapView";
+import BefrienderProfile from "../../pages/onboarding/BefrienderProfile";
+import BefrienderStatus from "../../pages/onboarding/BefrienderStatus";
+import ExplorerProfile from "../../pages/onboarding/ExplorerProfile";
+import ExplorerStatus from "../../pages/onboarding/ExplorerStatus";
+import SelectActivities from "../../pages/onboarding/SelectActivities";
+import Register from "../../pages/Register";
 import RolePage from "../../pages/Role";
 import { lightTheme } from "../../themes/lightTheme";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -23,20 +24,21 @@ function App() {
       <UserAuthContextProvider>
         <Routes>
           <Route path="/" element={<ProtectedRoute />}>
-            <Route index element={<MapViewPage />} />
-            <Route path={"onboarding"}>
-              <Route path={"befriender-status"} element={<BefrienderStatusPage />} />
-              <Route path={"befriender-profile"} element={<BefrienderProfilePage />} />
-              <Route path={"explorer-status"} element={<ExplorerStatusPage />} />
-              <Route path={"explorer-profile"} element={<ExplorerProfilePage />} />
+            <Route index element={<MapView />} />
+            <Route path={"/onboarding"}>
+              <Route path={"befriender-status"} element={<BefrienderStatus />} />
+              <Route path={"befriender-profile"} element={<BefrienderProfile />} />
+              <Route path={"explorer-status"} element={<ExplorerStatus />} />
+              <Route path={"explorer-profile"} element={<ExplorerProfile />} />
             </Route>
           </Route>
           <Route path={"/welcome"}>
-            <Route index element={<LandingPage />} />
-            <Route path={"login"} element={<LoginPage />} />
-            <Route path={"register"} element={<RegisterPage />} />
+            <Route index element={<Landing />} />
+            <Route path={"login"} element={<Login />} />
+            <Route path={"register"} element={<Register />} />
             <Route path={"role"} element={<RolePage />} />
-            <Route path={"intro"} element={<IntroPage />} />
+            <Route path={"intro"} element={<Intro />} />
+            <Route path={"activities"} element={<SelectActivities />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
