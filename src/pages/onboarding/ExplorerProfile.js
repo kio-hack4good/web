@@ -3,6 +3,32 @@ import Button from "@mui/material/Button";
 import React from "react";
 import { Link } from "react-router-dom";
 
+const marks = [
+  {
+    value: 0,
+    label: "0",
+  },
+  {
+    value: 20,
+    label: "1",
+  },
+  {
+    value: 40,
+    label: "2",
+  },
+  {
+    value: 60,
+    label: "3",
+  },
+  {
+    value: 80,
+    label: "4",
+  },
+  {
+    value: 100,
+    label: "5",
+  },
+];
 const BefrienderProfile = () => {
   return (
     <Box
