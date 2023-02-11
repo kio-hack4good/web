@@ -1,12 +1,14 @@
 import { AddAPhoto } from "@mui/icons-material";
 import { Box, Button, IconButton, Input, Stack, TextField, Typography } from "@mui/material";
 import { RecaptchaVerifier } from "firebase/auth";
+import { signInWithPhoneNumber } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import { auth } from "../../firebase";
+import { app, auth } from "../../firebase";
 
 const authSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field"),
@@ -43,10 +45,14 @@ const Register = () => {
     try {
       const recaptchaVerifier = new RecaptchaVerifier("recaptcha-container", {}, auth);
       await recaptchaVerifier.render();
-      // const response = await signInWithPhoneNumber(auth, values.phone, recaptchaVerifier);
+      const response = await signInWithPhoneNumber(auth, values.phone, recaptchaVerifier);
       setResult(response);
       setFlag(true);
       setSubmitting(false);
+      const docRef = await addDoc(collection(db, "users"), {
+        username: values.username,
+        phone: values.phone,
+      });
     } catch (err) {
       console.log(err);
     }
@@ -54,10 +60,10 @@ const Register = () => {
   const verifyOtp = async (values) => {
     console.log(values);
     try {
-      // const res = await result.confirm(values.otp);
-      navigate("/");
+      const res = await result.confirm(values.otp);
+      navigate("/home");
     } catch (err) {
-      console.log(err.message);
+      setError(err.message);
     }
   };
 
@@ -114,7 +120,7 @@ const Register = () => {
                 </Stack>
               )}
             </Field>
-            {/*<Typography*/}
+            {/* <Typography*/}
             {/*  variant={"h4"}*/}
             {/*  sx={{*/}
             {/*    marginTop: "3em",*/}
@@ -127,7 +133,7 @@ const Register = () => {
             {/*    fontWeight: "bold",*/}
             {/*  }}>*/}
             {/*  Request again*/}
-            {/*</Typography>*/}
+            {/*</Typography> */}
             <Button type={"submit"}>Confirm OTP</Button>
           </Stack>
         </Form>

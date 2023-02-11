@@ -1,3 +1,4 @@
+import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import React, { useCallback, useState } from "react";
 
@@ -9,6 +10,7 @@ export default function MapView() {
 
   const [map, setMap] = useState(null);
   const [centre, setCentre] = useState({ lat: 1.3082, lng: 103.7734 });
+  const [value, setValue] = useState(0);
 
   const onLoad = useCallback((map) => {
     const bounds = new google.maps.LatLngBounds();
@@ -27,12 +29,24 @@ export default function MapView() {
   }, []);
 
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={{ width: "1535px", height: "720px" }}
-      center={centre}
-      zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}></GoogleMap>
+    <>
+      <GoogleMap
+        mapContainerStyle={{ width: "1535px", height: "720px" }}
+        center={centre}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}></GoogleMap>
+      <BottomNavigation
+        showLabels
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}>
+        <BottomNavigationAction label="Recents" />
+        <BottomNavigationAction label="Favorites" />
+        <BottomNavigationAction label="Nearby" />
+      </BottomNavigation>
+    </>
   ) : (
     <></>
   );
