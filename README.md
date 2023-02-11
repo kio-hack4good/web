@@ -9,7 +9,7 @@ The aspects to focus on include eliminating barriers to understanding, communica
 
 As such, our team designed Kio.
 
-**Kio** (乔, kío), meaning “Bridge” in Hokkien, is a solution that fosters meaningful interactions between People-with-Disabilities (PwDs) and People-without-Disabilities (PwOD) by participating in activities together. 
+**Kio** (乔, kío), meaning “Bridge” in Hokkien, is a solution that *bridges* the gap between people: Kio aims to fosters meaningful interactions between People-with-Disabilities (PwDs) and People-without-Disabilities (PwOD) by participating in activities together. 
 
 PwDs (**Explorers**) are matched with PwODs (**Befrienders**) in meaningful events, which include:
 - Community events: Activities that give back to the community, such as volunteering at soup kitchens, beach cleanups, and community gardening.
