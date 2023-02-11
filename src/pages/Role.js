@@ -8,7 +8,10 @@ import guardian from "../assets/guardian.svg";
 
 export default function RolePage() {
   const [user, setUser] = useState("Explorer");
+  const { userType, setUserType } = useUserAuth();
+
   let navigate = useNavigate();
+
   const onOptionChange = (e) => {
     setUser(e.target.value);
   };

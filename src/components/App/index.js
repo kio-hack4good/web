@@ -2,20 +2,20 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { UserAuthContextProvider } from "../../context/UseAuthContext";
+import { UserAuthContextProvider } from "../../contexts/UserAuth";
 import Intro from "../../pages/Intro";
 import Landing from "../../pages/Landing";
+import Login from "../../pages/Login";
 import MapView from "../../pages/MapView";
 import BefrienderProfile from "../../pages/onboarding/BefrienderProfile";
 import BefrienderStatus from "../../pages/onboarding/BefrienderStatus";
 import ExplorerProfile from "../../pages/onboarding/ExplorerProfile";
 import ExplorerStatus from "../../pages/onboarding/ExplorerStatus";
-import Activities from "../../pages/onboarding/SelectActivities";
+import SelectActivities from "../../pages/onboarding/SelectActivities";
+import Register from "../../pages/Register";
 import RolePage from "../../pages/Role";
 import { lightTheme } from "../../themes/lightTheme";
-import Login from "../Auth/Login";
-import Register from "../Auth/Register";
-import ProtectedRoute from "../ProtectedRoutes";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
       <UserAuthContextProvider>
         <Routes>
           <Route path="/" element={<ProtectedRoute />}>
+            <Route index element={<MapView />} />
             <Route path={"/onboarding"}>
               <Route path={"befriender-status"} element={<BefrienderStatus />} />
               <Route path={"befriender-profile"} element={<BefrienderProfile />} />
@@ -37,10 +38,7 @@ function App() {
             <Route path={"register"} element={<Register />} />
             <Route path={"role"} element={<RolePage />} />
             <Route path={"intro"} element={<Intro />} />
-            <Route path={"activities"} element={<Activities />} />
-          </Route>
-          <Route path={"/home"}>
-            <Route index element={<MapView />} />
+            <Route path={"activities"} element={<SelectActivities />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

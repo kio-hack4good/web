@@ -1,5 +1,5 @@
 import { AddAPhoto } from "@mui/icons-material";
-import { Box, Button, IconButton, Input, Stack, TextField, Typography } from "@mui/material";
+import { Button, IconButton, Input, Stack, TextField, Typography } from "@mui/material";
 import { RecaptchaVerifier } from "firebase/auth";
 import { signInWithPhoneNumber } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
@@ -8,7 +8,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import { app, auth } from "../../firebase";
+import OTPForm from "../components/OTPForm";
+import { auth, db } from "../firebase";
 
 const authSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field"),
@@ -35,13 +36,13 @@ const initialValues = {
   image: null,
 };
 
-const Register = () => {
+const RegisterPage = () => {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
   const [flag, setFlag] = useState(false);
   const navigate = useNavigate();
+
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log("Registering", values);
     try {
       const recaptchaVerifier = new RecaptchaVerifier("recaptcha-container", {}, auth);
       await recaptchaVerifier.render();
@@ -57,92 +58,18 @@ const Register = () => {
       console.log(err);
     }
   };
-  const verifyOtp = async (values) => {
-    console.log(values);
+
+  const verifyOTP = async (values) => {
     try {
       const res = await result.confirm(values.otp);
       navigate("/home");
     } catch (err) {
-      setError(err.message);
+      console.log(err.message);
     }
   };
 
-  const ValidationScreen = () => (
-    <Box
-      sx={{
-        paddingLeft: "10vw",
-        paddingRight: "10vw",
-        height: "100vh",
-      }}>
-      <Formik
-        onSubmit={verifyOtp}
-        initialValues={{
-          otp: "",
-        }}>
-        <Form>
-          <Stack
-            sx={{
-              alignItems: "center",
-              marginTop: "10vh",
-            }}>
-            <Typography
-              variant={"h1"}
-              sx={{
-                fontWeight: "bold",
-              }}>
-              Verify your device!
-            </Typography>
-            <Typography
-              variant={"h4"}
-              sx={{
-                textAlign: "center",
-                marginBottom: "10vh",
-              }}>
-              Enter the code you received via SMS.
-            </Typography>
-            <Field name="otp">
-              {({
-                field, // { name, value, onChange, onBlur }
-              }) => (
-                <Stack>
-                  <TextField sx={{ height: "10%" }} placeholder="Enter the OTP here" {...field} />
-                  <ErrorMessage name="otp">
-                    {(msg) => (
-                      <Typography
-                        variant={"h5"}
-                        sx={{
-                          color: "warning.main",
-                        }}>
-                        {msg}
-                      </Typography>
-                    )}
-                  </ErrorMessage>
-                </Stack>
-              )}
-            </Field>
-            {/* <Typography*/}
-            {/*  variant={"h4"}*/}
-            {/*  sx={{*/}
-            {/*    marginTop: "3em",*/}
-            {/*  }}>*/}
-            {/*  Didn&apos;t receive the code?*/}
-            {/*</Typography>*/}
-            {/*<Typography*/}
-            {/*  variant={"h4"}*/}
-            {/*  sx={{*/}
-            {/*    fontWeight: "bold",*/}
-            {/*  }}>*/}
-            {/*  Request again*/}
-            {/*</Typography> */}
-            <Button type={"submit"}>Confirm OTP</Button>
-          </Stack>
-        </Form>
-      </Formik>
-    </Box>
-  );
-
   return flag ? (
-    <ValidationScreen />
+    <OTPForm onSuccess={verifyOTP} />
   ) : (
     <Stack
       sx={{
@@ -357,4 +284,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

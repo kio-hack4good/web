@@ -1,7 +1,7 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { React, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import baking from "../../assets/baking.svg";
 import chess from "../../assets/chess.svg";
@@ -167,7 +167,7 @@ export default function SelectActivities(user) {
         </Grid>
       </Grid>
       <Button variant="contained">
-        <Link style={{ color: "white" }} to="/home" state={{ data: { user } }}>
+        <Link style={{ color: "white" }} to="/" state={{ data: { user } }}>
           Next
         </Link>
       </Button>
