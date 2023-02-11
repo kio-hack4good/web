@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import { app, auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 
 const authSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field"),
