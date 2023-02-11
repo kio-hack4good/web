@@ -55,9 +55,9 @@ const Register = () => {
     console.log(values);
     try {
       // const res = await result.confirm(values.otp);
-      navigate("/home");
+      navigate("/");
     } catch (err) {
-      setError(err.message);
+      console.log(err.message);
     }
   };
 
