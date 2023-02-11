@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import befriender from "../assets/befriender.svg";
 import explorer from "../assets/explorer.svg";
 import guardian from "../assets/guardian.svg";
+import { useUserAuth } from "../contexts/UserAuth";
 
 export default function RolePage() {
   const [user, setUser] = useState("Explorer");
@@ -23,6 +24,7 @@ export default function RolePage() {
       direction="column"
       alignItems="center"
       justifyContent="start"
+      sx={{}}
       // eslint-disable-next-line prettier/prettier
       paddingTop="20%">
       <Grid
@@ -31,6 +33,9 @@ export default function RolePage() {
         direction="column"
         alignItems="center"
         justifyContent="center"
+        sx={{
+          marginBottom: "10vh",
+        }}
         xs={12}>
         <Box sx={{ width: "60%" }}>
           <Typography
