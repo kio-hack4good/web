@@ -4,11 +4,9 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import { useUserAuth } from "../../context/UseAuthContext";
-// TODO: Prettify error validation displayed to use
+import { useUserAuth } from "../contexts/UserAuth";
 
-import OTPForm from "../components/OTPForm";
-import { db } from "../firebase";
+// TODO: Prettify error validation displayed to use
 
 const authSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field"),
@@ -24,6 +22,7 @@ const initialValues = {
 
 const Login = () => {
   const navigate = useNavigate();
+  const { userType } = useUserAuth();
 
   const handleSubmit = (values, { setSubmitting }) => {
     console.log("Submitting values: ", values);
@@ -33,7 +32,6 @@ const Login = () => {
     } else {
       navigate("/onboarding/befriender-status");
     }
-    setFlag(true);
   };
 
   const verifyOTP = async (values) => {
