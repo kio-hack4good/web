@@ -64,7 +64,7 @@ const RegisterPage = () => {
       const res = await result.confirm(values.otp);
       navigate("/home");
     } catch (err) {
-      setError(err.message);
+      console.log(err.message);
     }
   };
 

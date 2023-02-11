@@ -6,14 +6,15 @@ import {
   signInWithPhoneNumber,
   signOut,
 } from "firebase/auth";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { auth } from "../firebase";
 
-const UserAuthContext = createContext(null);
+const userAuthContext = createContext(null);
 
-export function UserAuthProvider({ children }) {
+export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
+  const [userType, setUserType] = useState("Explorer");
 
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -34,21 +35,25 @@ export function UserAuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
+      console.log("Auth", currentuser);
+      setUser(currentuser);
     });
+
     return () => {
       unsubscribe();
     };
   }, []);
 
   return (
-    <UserAuthContext.Provider value={{ user, setUpRecaptcha, logIn, signUp, logOut }}>
+    // eslint-disable-next-line react/react-in-jsx-scope
+    <userAuthContext.Provider
+      value={{ user, setUpRecaptcha, logIn, signUp, logOut, userType, setUserType }}>
       {children}
-    </UserAuthContext.Provider>
+    </userAuthContext.Provider>
   );
 }
 
 export function useUserAuth() {
-  return useContext(UserAuthContext);
+  return useContext(userAuthContext);
 }

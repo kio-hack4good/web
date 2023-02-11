@@ -2,7 +2,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { UserAuthProvider } from "../../contexts/UserAuth";
+import { UserAuthContextProvider } from "../../contexts/UserAuth";
 import IntroPage from "../../pages/Intro";
 import LandingPage from "../../pages/Landing";
 import LoginPage from "../../pages/Login";
@@ -20,7 +20,7 @@ function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
-      <UserAuthProvider>
+      <UserAuthContextProvider>
         <Routes>
           <Route path="/" element={<ProtectedRoute />}>
             <Route index element={<MapViewPage />} />
@@ -40,7 +40,7 @@ function App() {
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </UserAuthProvider>
+      </UserAuthContextProvider>
     </ThemeProvider>
   );
 }

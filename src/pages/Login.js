@@ -1,50 +1,37 @@
-import { collection, getDocs, query, where } from "@firebase/firestore";
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import OTPForm from "../components/OTPForm";
-import { db } from "../firebase";
+import { useUserAuth } from "../contexts/UserAuth";
+
+// TODO: Prettify error validation displayed to use
 
 const authSchema = Yup.object().shape({
-  phone: Yup.string().required("Phone is a required field"),
+  username: Yup.string().required("Username is a required field"),
   password: Yup.string()
     .required("Password is a required field")
     .min(8, "Password must be at least 8 characters"),
 });
 
 const initialValues = {
-  phone: "",
+  username: "",
   password: "",
 };
 
-const LoginPage = () => {
-  const [flag, setFlag] = useState(false);
-  const [result, setResult] = useState(null);
-
+const Login = () => {
   const navigate = useNavigate();
+  const { userType } = useUserAuth();
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    const snapshot = await getDocs(
-      query(collection(db, "users"), where("phone", "==", values.phone))
-    );
-    let found = false;
-    snapshot.forEach((doc) => {
-      found = true;
-    });
-
-    if (!found) {
-      throw new Error("User does not exist");
-    }
-
-    const recaptchaVerifier = new RecaptchaVerifier("recaptcha-container", {}, auth);
-    await recaptchaVerifier.render();
-    const response = await signInWithPhoneNumber(auth, values.phone, recaptchaVerifier);
-    setResult(response);
+  const handleSubmit = (values, { setSubmitting }) => {
+    console.log("Submitting values: ", values);
     setSubmitting(false);
-    setFlag(true);
+    if (userType == "Explorer") {
+      navigate("/onboarding/explorer-status");
+    } else {
+      navigate("/onboarding/befriender-status");
+    }
   };
 
   const verifyOTP = async (values) => {
@@ -56,9 +43,7 @@ const LoginPage = () => {
     }
   };
 
-  return flag ? (
-    <OTPForm onSuccess={verifyOTP} />
-  ) : (
+  return (
     <Stack
       sx={{
         paddingLeft: "10vw",
@@ -88,13 +73,13 @@ const LoginPage = () => {
           {({ isSubmitting }) => (
             <Form>
               <Stack spacing={2}>
-                <Field name="phone">
+                <Field name="username">
                   {({
                     field, // { name, value, onChange, onBlur }
                   }) => (
                     <Stack>
-                      <TextField sx={{ height: "10%" }} placeholder="Phone" {...field} />
-                      <ErrorMessage name="phone">
+                      <TextField sx={{ height: "10%" }} placeholder="Username" {...field} />
+                      <ErrorMessage name="username">
                         {(msg) => (
                           <Typography
                             variant={"h5"}
@@ -193,4 +178,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
