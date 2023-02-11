@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import OTPForm from "../components/OTPForm";
-import { app, auth } from "../firebase";
+import { auth, db } from "../firebase";
 
 const authSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field"),
@@ -41,8 +41,8 @@ const RegisterPage = () => {
   const [result, setResult] = useState(null);
   const [flag, setFlag] = useState(false);
   const navigate = useNavigate();
+
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log("Registering", values);
     try {
       const recaptchaVerifier = new RecaptchaVerifier("recaptcha-container", {}, auth);
       await recaptchaVerifier.render();
