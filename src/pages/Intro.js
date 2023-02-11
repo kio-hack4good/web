@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import logo from "../assets/logoSmall.svg";
 
-export default function Intro(user) {
+export default function IntroPage(user) {
   const location = useLocation();
   const data = location.state?.data;
 

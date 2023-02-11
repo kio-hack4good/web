@@ -5,13 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import befriender from "../assets/befriender.svg";
 import explorer from "../assets/explorer.svg";
 import guardian from "../assets/guardian.svg";
-import { useUserAuth } from "../context/UseAuthContext";
 
 export default function RolePage() {
   const [user, setUser] = useState("Explorer");
   const { userType, setUserType } = useUserAuth();
 
   let navigate = useNavigate();
+
   const onOptionChange = (e) => {
     setUser(e.target.value);
   };
@@ -135,11 +135,7 @@ export default function RolePage() {
           Next
         </Button> */}
         <Button variant="contained">
-          <Link
-            onClick={() => setUserType(user)}
-            style={{ color: "white" }}
-            to="/welcome/intro"
-            state={{ data: { user } }}>
+          <Link style={{ color: "white" }} to="/welcome/intro" state={{ data: { user } }}>
             Next
           </Link>
         </Button>

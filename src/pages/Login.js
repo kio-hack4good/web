@@ -7,6 +7,9 @@ import * as Yup from "yup";
 import { useUserAuth } from "../../context/UseAuthContext";
 // TODO: Prettify error validation displayed to use
 
+import OTPForm from "../components/OTPForm";
+import { db } from "../firebase";
+
 const authSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field"),
   password: Yup.string()
@@ -21,8 +24,6 @@ const initialValues = {
 
 const Login = () => {
   const navigate = useNavigate();
-  const { userType } = useUserAuth();
-  console.log(userType);
 
   const handleSubmit = (values, { setSubmitting }) => {
     console.log("Submitting values: ", values);
@@ -31,6 +32,16 @@ const Login = () => {
       navigate("/onboarding/explorer-status");
     } else {
       navigate("/onboarding/befriender-status");
+    }
+    setFlag(true);
+  };
+
+  const verifyOTP = async (values) => {
+    try {
+      const res = await result.confirm(values.otp);
+      navigate("/home");
+    } catch (err) {
+      setError(err.message);
     }
   };
 
