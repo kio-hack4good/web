@@ -10,14 +10,14 @@ import { useUserAuth } from "../contexts/UserAuth";
 
 const authSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field"),
-  password: Yup.string()
-    .required("Password is a required field")
-    .min(8, "Password must be at least 8 characters"),
+  // password: Yup.string()
+  //   .required("Password is a required field")
+  //   .min(8, "Password must be at least 8 characters"),
 });
 
 const initialValues = {
-  username: "",
-  password: "",
+  phone: "",
+  // password: "",
 };
 
 const Login = () => {
@@ -37,9 +37,9 @@ const Login = () => {
   const verifyOTP = async (values) => {
     try {
       const res = await result.confirm(values.otp);
-      navigate("/home");
+      navigate("/");
     } catch (err) {
-      setError(err.message);
+      console.log(err.message);
     }
   };
 
@@ -78,8 +78,8 @@ const Login = () => {
                     field, // { name, value, onChange, onBlur }
                   }) => (
                     <Stack>
-                      <TextField sx={{ height: "10%" }} placeholder="Username" {...field} />
-                      <ErrorMessage name="username">
+                      <TextField sx={{ height: "10%" }} placeholder="Phone Number" {...field} />
+                      <ErrorMessage name="phone">
                         {(msg) => (
                           <Typography
                             variant={"h5"}
@@ -93,31 +93,31 @@ const Login = () => {
                     </Stack>
                   )}
                 </Field>
-                <Field name="password">
-                  {({
-                    field, // { name, value, onChange, onBlur }
-                  }) => (
-                    <Stack>
-                      <TextField
-                        sx={{ height: "10%" }}
-                        placeholder="Password"
-                        type={"password"}
-                        {...field}
-                      />
-                      <ErrorMessage name="password">
-                        {(msg) => (
-                          <Typography
-                            variant={"h5"}
-                            sx={{
-                              color: "warning.main",
-                            }}>
-                            {msg}
-                          </Typography>
-                        )}
-                      </ErrorMessage>
-                    </Stack>
-                  )}
-                </Field>
+                {/*<Field name="password">*/}
+                {/*  {({*/}
+                {/*    field, // { name, value, onChange, onBlur }*/}
+                {/*  }) => (*/}
+                {/*    <Stack>*/}
+                {/*      <TextField*/}
+                {/*        sx={{ height: "10%" }}*/}
+                {/*        placeholder="Password"*/}
+                {/*        type={"password"}*/}
+                {/*        {...field}*/}
+                {/*      />*/}
+                {/*      <ErrorMessage name="password">*/}
+                {/*        {(msg) => (*/}
+                {/*          <Typography*/}
+                {/*            variant={"h5"}*/}
+                {/*            sx={{*/}
+                {/*              color: "warning.main",*/}
+                {/*            }}>*/}
+                {/*            {msg}*/}
+                {/*          </Typography>*/}
+                {/*        )}*/}
+                {/*      </ErrorMessage>*/}
+                {/*    </Stack>*/}
+                {/*  )}*/}
+                {/*</Field>*/}
 
                 <Button
                   sx={{
