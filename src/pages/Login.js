@@ -3,6 +3,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+
+import { useUserAuth } from "../contexts/UserAuth";
 // TODO: Prettify error validation displayed to use
 
 const authSchema = Yup.object().shape({
@@ -17,11 +19,12 @@ const initialValues = {
   password: "",
 };
 
-const Login = () => {
+const LoginPage = () => {
+  const { logIn } = useUserAuth();
+
   const navigate = useNavigate();
 
   const handleSubmit = (values, { setSubmitting }) => {
-    console.log("Submitting values: ", values);
     setSubmitting(false);
     navigate("/");
   };
@@ -161,4 +164,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

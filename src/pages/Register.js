@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import { app, auth } from "../../firebase";
+import { app, auth } from "../firebase";
 
 const authSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field"),
@@ -35,7 +35,7 @@ const initialValues = {
   image: null,
 };
 
-const Register = () => {
+const RegisterPage = () => {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
   const [flag, setFlag] = useState(false);
@@ -357,4 +357,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

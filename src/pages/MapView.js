@@ -2,7 +2,7 @@ import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import React, { useCallback, useState } from "react";
 
-export default function MapView() {
+export default function MapViewPage() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyB5TGwWCc-RM-xKoWGegoGFiNLoidedWrM",

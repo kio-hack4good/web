@@ -6,13 +6,13 @@ import {
   signInWithPhoneNumber,
   signOut,
 } from "firebase/auth";
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 import { auth } from "../firebase";
 
-const userAuthContext = createContext(null);
+const UserAuthContext = createContext(null);
 
-export function UserAuthContextProvider({ children }) {
+export function UserAuthProvider({ children }) {
   const [user, setUser] = useState({});
 
   function logIn(email, password) {
@@ -34,24 +34,21 @@ export function UserAuthContextProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      console.log("Auth", currentuser);
-      setUser(currentuser);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
     });
-
     return () => {
       unsubscribe();
     };
   }, []);
 
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
-    <userAuthContext.Provider value={{ user, setUpRecaptcha, logIn, signUp, logOut }}>
+    <UserAuthContext.Provider value={{ user, setUpRecaptcha, logIn, signUp, logOut }}>
       {children}
-    </userAuthContext.Provider>
+    </UserAuthContext.Provider>
   );
 }
 
 export function useUserAuth() {
-  return useContext(userAuthContext);
+  return useContext(UserAuthContext);
 }

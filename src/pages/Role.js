@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { React, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import befriender from "../assets/befriender.svg";
 import explorer from "../assets/explorer.svg";
@@ -8,7 +8,7 @@ import guardian from "../assets/guardian.svg";
 
 export default function RolePage() {
   const [user, setUser] = useState("Explorer");
-  let navigate = useNavigate();
+
   const onOptionChange = (e) => {
     setUser(e.target.value);
   };
