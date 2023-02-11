@@ -1,9 +1,6 @@
-import { collection, getDocs, query } from "@firebase/firestore";
-import { BottomNavigation, BottomNavigationAction } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, Box, Paper } from "@mui/material";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-import React, { useCallback, useEffect, useState } from "react";
-
-import { db } from "../firebase";
+import React, { useCallback, useState } from "react";
 
 export default function MapViewPage() {
   const { isLoaded } = useJsApiLoader({
@@ -45,22 +42,36 @@ export default function MapViewPage() {
 
   return isLoaded ? (
     <>
-      <GoogleMap
-        mapContainerStyle={{ width: "1535px", height: "720px" }}
-        center={centre}
-        zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}></GoogleMap>
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
+      <Box
+        sx={{
+          height: "100vh",
         }}>
-        <BottomNavigationAction label="Recents" />
-        <BottomNavigationAction label="Favorites" />
-        <BottomNavigationAction label="Nearby" />
-      </BottomNavigation>
+        <Box
+          sx={{
+            display: "flex",
+            height: "100%",
+          }}>
+          <GoogleMap
+            mapContainerStyle={{ width: "100%", height: "100%" }}
+            center={centre}
+            zoom={10}
+            onLoad={onLoad}
+            onUnmount={onUnmount}
+          />
+        </Box>
+        <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}>
+          <BottomNavigation
+            showLabels
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}>
+            <BottomNavigationAction label="Profile" variant="h1" />
+            <BottomNavigationAction label="Map" variant="h1" />
+            <BottomNavigationAction label="Resources" variant="h1" />
+          </BottomNavigation>
+        </Paper>
+      </Box>
     </>
   ) : (
     <></>
