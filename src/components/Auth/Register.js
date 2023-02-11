@@ -63,7 +63,7 @@ const Register = () => {
       const res = await result.confirm(values.otp);
       navigate("/home");
     } catch (err) {
-      setError(err.message);
+      console.log(err.message);
     }
   };
 
