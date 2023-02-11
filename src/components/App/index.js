@@ -2,40 +2,45 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { UserAuthContextProvider } from "../../context/UseAuthContext";
-import Intro from "../../pages/Intro";
-import Landing from "../../pages/Landing";
-import MapView from "../../pages/MapView";
+import { UserAuthProvider } from "../../contexts/UserAuth";
+import IntroPage from "../../pages/Intro";
+import LandingPage from "../../pages/Landing";
+import LoginPage from "../../pages/Login";
+import MapViewPage from "../../pages/MapView";
+import BefrienderProfilePage from "../../pages/onboarding/BefrienderProfile";
+import BefrienderStatusPage from "../../pages/onboarding/BefrienderStatus";
+import ExplorerProfilePage from "../../pages/onboarding/ExplorerProfile";
+import ExplorerStatusPage from "../../pages/onboarding/ExplorerStatus";
+import RegisterPage from "../../pages/Register";
 import RolePage from "../../pages/Role";
 import { lightTheme } from "../../themes/lightTheme";
-import Login from "../Auth/Login";
-import Register from "../Auth/Register";
-import ProtectedRoute from "../ProtectedRoutes";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
-      <UserAuthContextProvider>
+      <UserAuthProvider>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <MapView />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route index element={<MapViewPage />} />
+            <Route path={"onboarding"}>
+              <Route path={"befriender-status"} element={<BefrienderStatusPage />} />
+              <Route path={"befriender-profile"} element={<BefrienderProfilePage />} />
+              <Route path={"explorer-status"} element={<ExplorerStatusPage />} />
+              <Route path={"explorer-profile"} element={<ExplorerProfilePage />} />
+            </Route>
+          </Route>
           <Route path={"/welcome"}>
-            <Route index element={<Landing />} />
-            <Route path={"login"} element={<Login />} />
-            <Route path={"register"} element={<Register />} />
+            <Route index element={<LandingPage />} />
+            <Route path={"login"} element={<LoginPage />} />
+            <Route path={"register"} element={<RegisterPage />} />
             <Route path={"role"} element={<RolePage />} />
-            <Route path={"intro"} element={<Intro />} />
+            <Route path={"intro"} element={<IntroPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </UserAuthContextProvider>
+      </UserAuthProvider>
     </ThemeProvider>
   );
 }

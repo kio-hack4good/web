@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { db } from "../firebase";
 
-export default function MapView() {
+export default function MapViewPage() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyB5TGwWCc-RM-xKoWGegoGFiNLoidedWrM",
