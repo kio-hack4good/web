@@ -30,7 +30,7 @@ Ultimately, Kio empowers PwDs to participate in community and recreational event
 Kio is not just a software application. Kio aims to be a holistic solution that leverages on and integrates existing initiatives for PwDs into a cohesive interface for Singaporeans to learn more, interact with, and integrate PwDs into their community. 
 
 There are two parts to Kio:
-- **Mobile Application:** An accessibility-first mobile application has been developed as a prototype to provide Befriender-Explorer matching services. A demo of our application can be found here.
+- **Mobile Application:** An accessibility-first mobile application has been developed as a prototype to provide Befriender-Explorer matching services. A demo of our application can be found [here](kio-hack4good.web.app).
 - **Islandwide Institutional Implementation and Integration:** Beyond the application, Kio aims to integrate the different initiatives across different organizations. 
 
 We understand this README is long. As such, our team has outlined a few sections that may be of interest to you in order: 
@@ -113,6 +113,10 @@ In addition, being able to work towards a common goal will go a long way in help
 We aim to educate Befrienders on the various types of challenges that Befrienders might face. More importantly, Kio aims to substantially increase their interactions with Befrienders to overcome stigma and misconceptions. We want Singaporeans to understand the challenges Explorers face and develop greater empathy and understanding. 
 
 ## Mobile Application
+
+### Link to Kio's Demo
+A link to a product demo can be found [here](kio-hack4good.web.app).
+
 ### Features for the Mobile Application
 There are a few iterations of the Mobile Application. We have included up to v3.0 in this report. As our team gains more experience developing Kio and communicating with different stakeholders, we will continue enhancing our application to suit the needs of our users. 
 ### Mobile Application Milestones:
