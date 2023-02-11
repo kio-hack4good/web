@@ -31,7 +31,7 @@ Kio is not just a software application. Kio aims to be a holistic solution that 
 
 There are two parts to Kio:
 - **Mobile Application:** An accessibility-first mobile application has been developed as a prototype to provide Befriender-Explorer matching services. A demo of our application can be found here.
-- **Islandwide Implementation:** Beyond the application, Kio aims to integrate the different initiatives across different organizations. 
+- **Islandwide Institutional Implementation and Integration:** Beyond the application, Kio aims to integrate the different initiatives across different organizations. 
 
 We understand this README is long. As such, our team has outlined a few sections that may be of interest to you: 
 
