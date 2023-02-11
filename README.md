@@ -33,13 +33,14 @@ There are two parts to Kio:
 - **Mobile Application:** An accessibility-first mobile application has been developed as a prototype to provide Befriender-Explorer matching services. A demo of our application can be found here.
 - **Islandwide Institutional Implementation and Integration:** Beyond the application, Kio aims to integrate the different initiatives across different organizations. 
 
-We understand this README is long. As such, our team has outlined a few sections that may be of interest to you: 
+We understand this README is long. As such, our team has outlined a few sections that may be of interest to you in order: 
 
 - **Mobile Application:** Features for the mobile application, and how it’s designed.
 - **Product Lifecycle:** A comprehensive overview of how Kio is planned to be implemented island-wide.
 - **User Flow:** A visual representation of how a Befriender or Explorer might use the mobile application.
 Motivation and Research: Useful to understand why we came up with Kio. Of note is how we analyzed existing initiatives and their limitations.
 - **Strengths and Limitations:** Certain strengths and limitations we perceive Kio to have.
+- **Motivation and Research**: Our research into the challenges PwDs face, and how we developed Kio to empower PwDs to overcome them.
 
 ## Team Members
 Kio is built by a team of four students from the National University of Singapore: 
